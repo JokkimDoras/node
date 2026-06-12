@@ -1,4 +1,4 @@
-# App Graph Builder — Frontend Engineering Technical Challenge
+# App Graph Builder — Frontend Engineering Canvas
 
 This repository contains a responsive, production-ready "App Graph Builder" UI built to fulfill the take-home assessment guidelines. The system combines interactive node-link diagrams, contextual structural tracking, and decoupled state synchronization architectures.
 
