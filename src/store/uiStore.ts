@@ -5,49 +5,38 @@ type InspectorTab = "config" | "runtime";
 interface UIStore {
   selectedAppId: string | null;
   selectedNodeId: string | null;
-
   isMobilePanelOpen: boolean;
-
   activeInspectorTab: InspectorTab;
-
   setSelectedAppId: (id: string | null) => void;
   setSelectedNodeId: (id: string | null) => void;
-
   setMobilePanelOpen: (open: boolean) => void;
-
-  setActiveInspectorTab: (
-    tab: InspectorTab
-  ) => void;
+  setActiveInspectorTab: (tab: InspectorTab) => void;
 }
 
-export const useUIStore = create<UIStore>(
-  (set) => ({
-    selectedAppId: null,
+export const useUIStore = create<UIStore>((set) => ({
+  selectedAppId: null,
+  selectedNodeId: null,
+  isMobilePanelOpen: false,
+  activeInspectorTab: "config",
 
-    selectedNodeId: null,
+  setSelectedAppId: (id) =>
+    set({
+      selectedAppId: id,
+      selectedNodeId: null, // Clear node selection context on app shift
+    }),
 
-    isMobilePanelOpen: false,
+  setSelectedNodeId: (id) =>
+    set({
+      selectedNodeId: id,
+    }),
 
-    activeInspectorTab: "config",
+  setMobilePanelOpen: (open) =>
+    set({
+      isMobilePanelOpen: open,
+    }),
 
-    setSelectedAppId: (id) =>
-      set({
-        selectedAppId: id,
-      }),
-
-    setSelectedNodeId: (id) =>
-      set({
-        selectedNodeId: id,
-      }),
-
-    setMobilePanelOpen: (open) =>
-      set({
-        isMobilePanelOpen: open,
-      }),
-
-    setActiveInspectorTab: (tab) =>
-      set({
-        activeInspectorTab: tab,
-      }),
-  })
-);
+  setActiveInspectorTab: (tab) =>
+    set({
+      activeInspectorTab: tab,
+    }),
+}));
